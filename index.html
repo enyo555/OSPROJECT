@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  	<meta charset="UTF-8">
+  	<title>Gambling Game</title>
+ </head>
+ <body>
+      <h1><p align="center">Gambling Game</p></h1>
+	  <h3><p align="center"><u>Rule</u> Place your bet below and choose number to guess and summit <br>If your number more than
+	  random number,You win 
+	  <h3><p align="center">Your money        <input type="text" id="money">  Baht</p></h3>
+	  <h3><p align="center">Place your bet    <input type="text" id="bet">  Baht</p></h3>
+      <h3><p align="center">Choose number to guess <Select id="guessnum">
+	                                               <option value="1">1</option>
+												   <option value="2">2</option>
+												   <option value="3">3</option>
+												   <option value="4">4</option>
+												   <option value="5">5</option>
+												   <option value="6">6</option>
+												   </select></p></h3>
+	  <p align="center"><Button id="button" onclick="bet()">bet</Button></p>
+	  <p align="center" id="notice"></Button></p>
+	  <p align="center" id="chooseresult"></Button></p>
+	  <p align="center" id="randomresult"></Button></p>
+	  <p align="center" id="result"></Button></p>
+      <p align="center" id="remain"></Button></p>
+      <script> 
+	function bet()
+	{
+		var money;
+		if((document.getElementById("money").value=="")||(document.getElementById("bet").value==""))
+		{
+		      document.getElementById("notice").innerHTML="Please enter both money and bet";
+		      document.getElementById("chooseresult").innerHTML="";
+		      document.getElementById("randomresult").innerHTML="";
+		      document.getElementById("result").innerHTML=""; 
+		      document.getElementById("remain").innerHTML="";
+		}
+		else
+		{
+			money=parseFloat(document.getElementById("money").value);
+			var bet=parseFloat(document.getElementById("bet").value);
+			if (money<1000)
+			{
+				document.getElementById("notice").innerHTML="We cannot play because your money is lower than 1000 baht !!!";
+				document.getElementById("chooseresult").innerHTML="";
+				document.getElementById("randomresult").innerHTML="";
+				document.getElementById("result").innerHTML=""; 
+				document.getElementById("remain").innerHTML="";   
+			}
+			else if (money<bet)
+			{
+				document.getElementById("notice").innerHTML="We cannot play because your bet is lower than money you got !!!";
+				document.getElementById("chooseresult").innerHTML="";
+				document.getElementById("randomresult").innerHTML="";
+				document.getElementById("result").innerHTML=""; 
+				document.getElementById("remain").innerHTML="";   
+			}
+			else
+			{
+				var number=parseInt(document.getElementById("guessnum").value);
+				var randomnum=parseInt(Math.random()*7);
+				document.getElementById("notice").innerHTML="";
+				document.getElementById("chooseresult").innerHTML="You choose number = "+number;
+				document.getElementById("randomresult").innerHTML="Random number    = "+randomnum;
+				if (number>randomnum)
+				{
+					money=money+bet;
+					document.getElementById("result").innerHTML="You Win !!!, You get "+bet+" Baht ;)"; 
+				}
+				else
+				{
+					money=money-bet;
+					document.getElementById("result").innerHTML="You Lose !!!";
+				}
+				document.getElementById("remain").innerHTML="Money remaining = "+money+" Baht";   
+			}
+		}
+	}
+      </script>
+ </body>
+</html>        
